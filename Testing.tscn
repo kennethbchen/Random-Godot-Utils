@@ -1,22 +1,78 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjer57hu8eits"]
+[gd_scene load_steps=9 format=3 uid="uid://bjer57hu8eits"]
 
 [ext_resource type="Script" path="res://addons/aimsystem/aim_system_2d/aim_system_2d.gd" id="1_o1oy3"]
+[ext_resource type="Script" path="res://addons/simplemenu/simple_menu/simple_menu.gd" id="1_ppx3d"]
 [ext_resource type="Texture2D" uid="uid://dkfvyv7ljt41w" path="res://icon.svg" id="2_h4mqc"]
+[ext_resource type="Script" path="res://addons/simplemenu/simple_menu_button_binding.gd" id="2_r00ci"]
 [ext_resource type="Script" path="res://testing_scripts/oscillator.gd" id="3_qpuy5"]
+
+[sub_resource type="Resource" id="Resource_tdkhq"]
+script = ExtResource("2_r00ci")
+button_path = NodePath("../CanvasLayer/HBoxContainer/Show")
+action_type = 1
+target_nodes = Array[NodePath]([NodePath("../CanvasLayer/Label")])
+
+[sub_resource type="Resource" id="Resource_tccpk"]
+script = ExtResource("2_r00ci")
+button_path = NodePath("../CanvasLayer/HBoxContainer/Hide")
+action_type = 0
+target_nodes = Array[NodePath]([NodePath("../CanvasLayer/Label")])
+
+[sub_resource type="Resource" id="Resource_3k6yr"]
+script = ExtResource("2_r00ci")
+button_path = NodePath("../CanvasLayer/HBoxContainer/Reload")
+action_type = 4
 
 [node name="Testing" type="Node2D"]
 
-[node name="AimTarget" type="Node2D" parent="."]
+[node name="AimSystem2D" type="Node" parent="."]
+
+[node name="AimTarget" type="Node2D" parent="AimSystem2D"]
 position = Vector2(276, 241)
 script = ExtResource("3_qpuy5")
 
-[node name="Sprite2D" type="Sprite2D" parent="AimTarget"]
+[node name="Sprite2D" type="Sprite2D" parent="AimSystem2D/AimTarget"]
 texture = ExtResource("2_h4mqc")
 
-[node name="AimSystem2D" type="Node2D" parent="." node_paths=PackedStringArray("aim_target")]
+[node name="AimSystem2D" type="Node2D" parent="AimSystem2D" node_paths=PackedStringArray("aim_target")]
 position = Vector2(276, 241)
 script = ExtResource("1_o1oy3")
 aim_target = NodePath("../AimTarget")
 
-[node name="Sprite2D" type="Sprite2D" parent="AimSystem2D"]
+[node name="Sprite2D" type="Sprite2D" parent="AimSystem2D/AimSystem2D"]
 texture = ExtResource("2_h4mqc")
+
+[node name="SimpleMenu" type="Node" parent="."]
+
+[node name="SimpleMenu" type="Node" parent="SimpleMenu"]
+script = ExtResource("1_ppx3d")
+actions = Array[ExtResource("2_r00ci")]([SubResource("Resource_tdkhq"), SubResource("Resource_tccpk"), SubResource("Resource_3k6yr")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SimpleMenu"]
+
+[node name="Label" type="Label" parent="SimpleMenu/CanvasLayer"]
+visible = false
+offset_left = 28.0
+offset_top = 423.0
+offset_right = 311.0
+offset_bottom = 475.0
+text = "Wow, I'm visible!
+Some extra information can go here!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SimpleMenu/CanvasLayer"]
+offset_left = 57.0
+offset_top = 514.0
+offset_right = 237.0
+offset_bottom = 554.0
+
+[node name="Show" type="Button" parent="SimpleMenu/CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Show Stuff"
+
+[node name="Hide" type="Button" parent="SimpleMenu/CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Hide Stuff"
+
+[node name="Reload" type="Button" parent="SimpleMenu/CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Reload This Scene"
