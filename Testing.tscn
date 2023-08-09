@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjer57hu8eits"]
+[gd_scene load_steps=11 format=3 uid="uid://bjer57hu8eits"]
 
 [ext_resource type="Script" path="res://testing_scripts/AimSystem2DTester.gd" id="1_8m75g"]
 [ext_resource type="Script" path="res://addons/aimsystem/aim_system_2d/aim_system_2d.gd" id="1_o1oy3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dkfvyv7ljt41w" path="res://icon.svg" id="2_h4mqc"]
 [ext_resource type="Script" path="res://addons/simplemenu/simple_menu_button_binding.gd" id="2_r00ci"]
 [ext_resource type="Script" path="res://testing_scripts/oscillator.gd" id="3_qpuy5"]
+[ext_resource type="Script" path="res://addons/traildrawer/trail_drawer_2d/trail_drawer_2d.gd" id="3_ur8gr"]
 
 [sub_resource type="Resource" id="Resource_tdkhq"]
 script = ExtResource("2_r00ci")
@@ -32,6 +33,11 @@ script = ExtResource("1_8m75g")
 [node name="AimTarget" type="Node2D" parent="AimSystem2D"]
 position = Vector2(276, 241)
 script = ExtResource("3_qpuy5")
+
+[node name="TrailDrawer2D" type="Line2D" parent="AimSystem2D/AimTarget" node_paths=PackedStringArray("tracked_node")]
+top_level = true
+script = ExtResource("3_ur8gr")
+tracked_node = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="AimSystem2D/AimTarget"]
 texture = ExtResource("2_h4mqc")
