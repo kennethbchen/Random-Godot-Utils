@@ -7,15 +7,35 @@ extends Node2D
 
 @export var aim_speed: float = 30.0
 
-var target_rotation_radians: float = 0
+var _target_global_position: Vector2
+
+var _target_rotation_radians: float = 0
 
 func init(target: Node2D):
 	aim_target = target
 
 func _process(delta):
-	if enabled and aim_target != null:
-		target_rotation_radians = get_angle_to(aim_target.global_position)
-		rotation = lerp_angle(rotation, rotation + target_rotation_radians, aim_speed * delta) 
+	
+	if not enabled:
+		return
+		
+	if aim_target != null:
+		aim_at(aim_target.global_position)
+	
+	rotation = lerp_angle(rotation, rotation + _target_rotation_radians, aim_speed * delta) 
+
+func aim_at(global_pos: Vector2):
+	_target_global_position = global_pos
+	_target_rotation_radians = get_angle_to(_target_global_position)
+
+func aim_at_mouse():
+	aim_at(get_global_mouse_position())
+
+func angle_error():
+	return abs(_angle_dif(rotation, rotation + _target_rotation_radians))
+
+func aim_direction() -> Vector2:
+	return transform.x
 
 # Returns angle in radians ranging from -PI to PI 
 func _angle_dif(from : float, to : float):
@@ -25,5 +45,4 @@ func _angle_dif(from : float, to : float):
 		ans -= TAU
 	return ans
 
-func angle_error():
-	return abs(_angle_dif(rotation, rotation + target_rotation_radians))
+

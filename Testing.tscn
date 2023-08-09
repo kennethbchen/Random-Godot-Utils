@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjer57hu8eits"]
+[gd_scene load_steps=10 format=3 uid="uid://bjer57hu8eits"]
 
+[ext_resource type="Script" path="res://testing_scripts/AimSystem2DTester.gd" id="1_8m75g"]
 [ext_resource type="Script" path="res://addons/aimsystem/aim_system_2d/aim_system_2d.gd" id="1_o1oy3"]
 [ext_resource type="Script" path="res://addons/simplemenu/simple_menu/simple_menu.gd" id="1_ppx3d"]
 [ext_resource type="Texture2D" uid="uid://dkfvyv7ljt41w" path="res://icon.svg" id="2_h4mqc"]
@@ -26,6 +27,7 @@ action_type = 4
 [node name="Testing" type="Node2D"]
 
 [node name="AimSystem2D" type="Node" parent="."]
+script = ExtResource("1_8m75g")
 
 [node name="AimTarget" type="Node2D" parent="AimSystem2D"]
 position = Vector2(276, 241)
@@ -34,12 +36,19 @@ script = ExtResource("3_qpuy5")
 [node name="Sprite2D" type="Sprite2D" parent="AimSystem2D/AimTarget"]
 texture = ExtResource("2_h4mqc")
 
-[node name="AimSystem2D" type="Node2D" parent="AimSystem2D" node_paths=PackedStringArray("aim_target")]
+[node name="TracksNode" type="Node2D" parent="AimSystem2D" node_paths=PackedStringArray("aim_target")]
 position = Vector2(276, 241)
 script = ExtResource("1_o1oy3")
 aim_target = NodePath("../AimTarget")
 
-[node name="Sprite2D" type="Sprite2D" parent="AimSystem2D/AimSystem2D"]
+[node name="Sprite2D" type="Sprite2D" parent="AimSystem2D/TracksNode"]
+texture = ExtResource("2_h4mqc")
+
+[node name="TracksMouse" type="Node2D" parent="AimSystem2D"]
+position = Vector2(621, 241)
+script = ExtResource("1_o1oy3")
+
+[node name="Sprite2D" type="Sprite2D" parent="AimSystem2D/TracksMouse"]
 texture = ExtResource("2_h4mqc")
 
 [node name="SimpleMenu" type="Node" parent="."]
