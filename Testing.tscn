@@ -37,6 +37,7 @@ script = ExtResource("3_qpuy5")
 [node name="TrailDrawer2D" type="Line2D" parent="AimSystem2D/AimTarget" node_paths=PackedStringArray("tracked_node")]
 top_level = true
 script = ExtResource("3_ur8gr")
+automatic = false
 tracked_node = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="AimSystem2D/AimTarget"]

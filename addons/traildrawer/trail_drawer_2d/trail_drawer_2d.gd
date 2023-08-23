@@ -1,3 +1,4 @@
+class_name TrailDrawer2D
 extends Line2D
 
 @export var automatic: bool = true
@@ -40,22 +41,22 @@ func _process(delta):
 	
 	# Try to add new points to the line
 	if last_point.distance_to(tracked_position) > min_distance:
-		
-		if points.size() < max_points:
-			append_point()
-		else:
-			
-			# Remove first point
-			points = points.slice(1, points.size())
-			append_point()
-			
-		# Points changed, check for intersection
-		if _is_loop():
-			loop_created.emit(self, points)
+		append_point()
 
 
 func append_point():
-	add_point(tracked_position, points.size() + 1)
+	
+	if points.size() < max_points:
+		add_point(tracked_position, points.size() + 1)
+		
+	else:
+		# Remove first point
+		points = points.slice(1, points.size())
+		add_point(tracked_position, points.size() + 1)
+		
+	# Points changed, check for intersection
+	if _is_loop():
+		loop_created.emit(self, points)
 
 func pop_point():
 	points.remove_at(points.size() - 1)
