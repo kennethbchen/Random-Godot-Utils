@@ -25,8 +25,8 @@ func _ready():
 			# Load scene is kinda broken because circular references prevents things like
 			# pressing a button to go to a scene and pressing another button to go back
 			# A solution is probably to input the scene by file name instead of by reference
-			assert(action.scene_to_load is PackedScene)
-			button.pressed.connect(func(): get_tree().change_scene_to_packed(action.scene_to_load))
+			assert(action.scene_to_load is String)
+			button.pressed.connect(func(): get_tree().change_scene_to_file(action.scene_to_load))
 		
 		elif action.action_type == action.ACTION_TYPE.RELOAD_CURRENT_SCENE:
 			

@@ -24,7 +24,7 @@ enum ACTION_TYPE {
 var method_to_call: String: get = _get_method_to_call
 
 ## The scene that will be loaded
-var scene_to_load: PackedScene
+var scene_to_load: String
 
 ## The nodes that will call the method indicated by action_type
 var target_nodes: Array[NodePath]
@@ -66,7 +66,7 @@ func _get_property_list() -> Array:
 	if action_type == ACTION_TYPE.LOAD_SCENE:
 		list.push_back({ 
 						name = "scene_to_load", 
-						type = TYPE_OBJECT,
+						type = TYPE_STRING,
 					})
 			
 	

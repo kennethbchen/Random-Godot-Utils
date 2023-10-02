@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjer57hu8eits"]
+[gd_scene load_steps=12 format=3 uid="uid://bjer57hu8eits"]
 
 [ext_resource type="Script" path="res://testing_scripts/AimSystem2DTester.gd" id="1_8m75g"]
 [ext_resource type="Script" path="res://addons/aimsystem/aim_system_2d/aim_system_2d.gd" id="1_o1oy3"]
@@ -24,6 +24,12 @@ target_nodes = Array[NodePath]([NodePath("../CanvasLayer/Label")])
 script = ExtResource("2_r00ci")
 button_path = NodePath("../CanvasLayer/HBoxContainer/Reload")
 action_type = 4
+
+[sub_resource type="Resource" id="Resource_ldcjb"]
+script = ExtResource("2_r00ci")
+button_path = NodePath("../CanvasLayer/HBoxContainer/SceneTransition")
+action_type = 3
+scene_to_load = "res://Testing2.tscn"
 
 [node name="Testing" type="Node2D"]
 
@@ -62,7 +68,7 @@ texture = ExtResource("2_h4mqc")
 
 [node name="SimpleMenu" type="Node" parent="SimpleMenu"]
 script = ExtResource("1_ppx3d")
-actions = Array[ExtResource("2_r00ci")]([SubResource("Resource_tdkhq"), SubResource("Resource_tccpk"), SubResource("Resource_3k6yr")])
+actions = Array[ExtResource("2_r00ci")]([SubResource("Resource_tdkhq"), SubResource("Resource_tccpk"), SubResource("Resource_3k6yr"), SubResource("Resource_ldcjb")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="SimpleMenu"]
 
@@ -92,3 +98,7 @@ text = "Hide Stuff"
 [node name="Reload" type="Button" parent="SimpleMenu/CanvasLayer/HBoxContainer"]
 layout_mode = 2
 text = "Reload This Scene"
+
+[node name="SceneTransition" type="Button" parent="SimpleMenu/CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Go To Scene 2"
