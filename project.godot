@@ -17,4 +17,4 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/aimsystem/plugin.cfg", "res://addons/componentstatemachine/plugin.cfg", "res://addons/simplemenu/plugin.cfg", "res://addons/traildrawer/plugin.cfg")
+enabled=PackedStringArray("res://addons/aimsystem/plugin.cfg", "res://addons/componentstatemachine/plugin.cfg", "res://addons/simplemenu/plugin.cfg", "res://addons/soundeffectcontroller/plugin.cfg", "res://addons/traildrawer/plugin.cfg")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjer57hu8eits"]
+[gd_scene load_steps=13 format=3 uid="uid://bjer57hu8eits"]
 
 [ext_resource type="Script" path="res://testing_scripts/AimSystem2DTester.gd" id="1_8m75g"]
 [ext_resource type="Script" path="res://addons/aimsystem/aim_system_2d/aim_system_2d.gd" id="1_o1oy3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/simplemenu/simple_menu_button_binding.gd" id="2_r00ci"]
 [ext_resource type="Script" path="res://testing_scripts/oscillator.gd" id="3_qpuy5"]
 [ext_resource type="Script" path="res://addons/traildrawer/trail_drawer_2d/trail_drawer_2d.gd" id="3_ur8gr"]
+[ext_resource type="Script" path="res://addons/soundeffectcontroller/sound_effect_controller/sound_effect_controller.gd" id="8_xuwrt"]
 
 [sub_resource type="Resource" id="Resource_tdkhq"]
 script = ExtResource("2_r00ci")
@@ -102,3 +103,7 @@ text = "Reload This Scene"
 [node name="SceneTransition" type="Button" parent="SimpleMenu/CanvasLayer/HBoxContainer"]
 layout_mode = 2
 text = "Go To Scene 2"
+
+[node name="SoundEffectController" type="Node" parent="."]
+script = ExtResource("8_xuwrt")
+num_players = 3
